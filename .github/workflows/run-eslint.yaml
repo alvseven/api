@@ -36,4 +36,4 @@ jobs:
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Run Eslint
-        run: npm run eslint
+        run: pnpm run lint:check-errors
