@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  eslint:
+  tests-e2e:
     runs-on: ubuntu-latest
 
     steps:
