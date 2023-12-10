@@ -1,4 +1,4 @@
-name: Run Tests E2E
+name: Run Eslint And Tests
 
 on:
   pull_request:
@@ -9,14 +9,13 @@ on:
       - main
 
 jobs:
-  tests-e2e:
+  workflow-dev:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 18.17.1
@@ -35,5 +34,7 @@ jobs:
             node_modules
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
 
-      - name: Run Tests E2E
+      - name: Run Eslint
+        run: pnpm run lint:check-errors
+      - name: Run Tests-E2E
         run: pnpm run tests
