@@ -1,15 +1,16 @@
 import supertest from "supertest";
 
-import { app, start } from "../src/server";
+import { startServer, stopServer } from "../src/server";
+import { app } from "../src/app";
 
 const request = supertest(app.server);
 
 beforeAll(async () => {
-	await start();
+  await startServer();
 });
 
 afterAll(async () => {
-	app.close();
+  await stopServer();
 });
 
-global.request = request; 
+global.request = request;
